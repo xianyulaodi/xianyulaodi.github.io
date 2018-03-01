@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>正则表达式学习 | 咸鱼老弟</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/7.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">正则表达式学习</h1><a id="logo" href="/.">咸鱼老弟</a><p class="description">【博客园-咸鱼老弟】</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/resource/"><i class="fa fa-university"> 资源</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">正则表达式学习</h1><div class="post-meta">May 30, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="clear"><div id="toc" class="toc-article"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式作用"><span class="toc-number">1.</span> <span class="toc-text">正则表达式作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式方法"><span class="toc-number">2.</span> <span class="toc-text">正则表达式方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本语法，正则声明"><span class="toc-number">2.0.1.</span> <span class="toc-text">基本语法，正则声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#支持正则的String对象方法"><span class="toc-number">2.0.2.</span> <span class="toc-text">支持正则的String对象方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RegExp对象方法"><span class="toc-number">2.0.3.</span> <span class="toc-text">RegExp对象方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式类型"><span class="toc-number">3.</span> <span class="toc-text">正则表达式类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#元字符"><span class="toc-number">3.0.1.</span> <span class="toc-text">元字符</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#量词"><span class="toc-number">3.0.1.1.</span> <span class="toc-text">量词</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#位置符号"><span class="toc-number">3.0.2.</span> <span class="toc-text">位置符号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分组"><span class="toc-number">3.0.3.</span> <span class="toc-text">分组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符类"><span class="toc-number">3.0.4.</span> <span class="toc-text">字符类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#贪婪模式和非贪婪模式"><span class="toc-number">4.</span> <span class="toc-text">贪婪模式和非贪婪模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#零宽正向断言和负向断言"><span class="toc-number">5.</span> <span class="toc-text">零宽正向断言和负向断言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式实战练习"><span class="toc-number">6.</span> <span class="toc-text">正则表达式实战练习</span></a></li></ol></div></div><div class="post-content"><p>&ensp;&ensp;&ensp;&ensp;正则表达式之前学习的时候，因为很久没怎么用，或者用的时候直接找网上现成的，所以都基本忘的差不多了。所以这篇文章即是笔记，也让自己再重新学习一遍正则表达式。<br>&ensp;&ensp;&ensp;&ensp;其实平时在操作一些字符串的时候，用正则的机会还是挺多的，之前没怎么重视正则，这是一个错误。写完这篇文章后，发觉工作中很多地方都可以用到正则，而且用起来其实还是挺爽的。</p>
+<a id="more"></a>
+<h2 id="正则表达式作用"><a href="#正则表达式作用" class="headerlink" title="正则表达式作用"></a>正则表达式作用</h2><p>&ensp;&ensp;&ensp;&ensp;正则表达式，又称规则表达式，它可以通过一些设定的规则来匹配一些字符串，是一个强大的<code>字符串</code>匹配工具。</p>
+<h2 id="正则表达式方法"><a href="#正则表达式方法" class="headerlink" title="正则表达式方法"></a>正则表达式方法</h2><h4 id="基本语法，正则声明"><a href="#基本语法，正则声明" class="headerlink" title="基本语法，正则声明"></a>基本语法，正则声明</h4><p>js中，正则的声明有两种方式</p>
+<ol>
+<li><p>直接量语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/d+/g</span><span class="regexp">/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建RegExp对象的语法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\d+"</span>, <span class="string">"g"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这两种声明方式其实还是有区别的，平时的话我比较喜欢第一种，方便一点，如果需要给正则表达式传递参数的话，那么只能用第二种创建RegExp的形式<br>格式：<code>var pattern = new RegExp(&#39;regexp&#39;,&#39;modifier&#39;)</code>;<br><code>regexp</code>： 匹配的模式，也就是上文指的正则规则。<br><code>modifier</code>: 正则实例的修饰符,可选值有：<br>i : 表示区分大小写字母匹配。<br>m ：表示多行匹配。<br>g : 表示全局匹配。</p>
+<p>传参的形式如下：<br>我们用构造函数来生成正则表达式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"^\\d+$"</span>,<span class="string">"gim"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这里需要注意，反斜杠需要转义，所以，直接声明量中的语法为<code>\d</code>，这里需要为 <code>\\d</code><br>那么，给它加变量，就和我们前面写的给字符串加变量一样了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> v = <span class="string">"bl"</span>;</span><br><span class="line"><span class="keyword">var</span> re =<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"^\\d+"</span> + v + <span class="string">"$"</span>,<span class="string">"gim"</span>);  <span class="comment">// re为/^\d+bl$/gim</span></span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h4 id="支持正则的String对象方法"><a href="#支持正则的String对象方法" class="headerlink" title="支持正则的String对象方法"></a>支持正则的String对象方法</h4><ol>
+<li>search 方法<br><strong> 作用： </strong> 该方法用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的字符串<br><strong> 基本语法：</strong> <code>stringObject.search(regexp);</code><br><strong> 返回值：</strong> 该字符串中第一个与regexp对象相匹配的子串的起始位置。如果没有找到任何匹配的子串，则返回-1；<br><strong> 注意点：</strong> search()方法不执行全局匹配，它将忽略标志g，<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"hello world,hello world"</span>;</span><br><span class="line"><span class="comment">// 返回匹配到的第一个位置(使用的regexp对象检索)</span></span><br><span class="line"><span class="built_in">console</span>.log(str.search(<span class="regexp">/hello/</span>)); <span class="comment">// 0</span></span><br><span class="line"><span class="comment">// 没有全局的概念 总是返回匹配到的第一个位置</span></span><br><span class="line"><span class="built_in">console</span>.log(str.search(<span class="regexp">/hello/g</span>)); <span class="comment">//0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(str.search(<span class="regexp">/world/</span>)); <span class="comment">// 6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果没有检索到的话，则返回-1</span></span><br><span class="line"><span class="built_in">console</span>.log(str.search(<span class="regexp">/longen/</span>)); <span class="comment">// -1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 我们检索的时候 可以忽略大小写来检索</span></span><br><span class="line"><span class="keyword">var</span> str2 = <span class="string">"Hello"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str2.search(<span class="regexp">/hello/i</span>)); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><br></p>
+<ol>
+<li>match()方法<br><strong> 作用：</strong> 该方法用于在字符串内检索指定的值，或找到一个或者多个正则表达式的匹配。类似于indexOf()或者lastIndexOf();<br><strong> 基本语法：</strong> <code>stringObject.match(searchValue) 或者stringObject.match(regexp)</code><br><strong> 返回值：</strong><br>&ensp;&ensp;存放匹配成功的数组; 它可以全局匹配模式，全局匹配的话，它返回的是一个数组。如果没有找到任何的一个匹配，那么它将返回的是null；<br>&ensp;&ensp;返回的数组内有三个元素，第一个元素的存放的是匹配的文本，还有二个对象属性<br>&ensp;&ensp;index属性表明的是匹配文本的起始字符在stringObject中的位置，input属性声明的是对stringObject对象的引用<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.match(<span class="string">"hello"</span>)); <span class="comment">// ["hello", index: 0, input: "hello world"]</span></span><br><span class="line"><span class="built_in">console</span>.log(str.match(<span class="string">"Helloy"</span>)); <span class="comment">// null</span></span><br><span class="line"><span class="built_in">console</span>.log(str.match(<span class="regexp">/hello/</span>)); <span class="comment">// ["hello", index: 0, input: "hello world"]</span></span><br><span class="line"><span class="comment">// 全局匹配</span></span><br><span class="line"><span class="keyword">var</span> str2=<span class="string">"1 plus 2 equal 3"</span></span><br><span class="line"><span class="built_in">console</span>.log(str2.match(<span class="regexp">/\d+/g</span>)); <span class="comment">//["1", "2", "3"]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><br></p>
+<ol>
+<li>replace()方法<br><strong> 作用：</strong> 该方法用于在字符串中使用一些字符替换另一些字符，或者替换一个与正则表达式匹配的子字符串；<br><strong> 基本用法：</strong> <code>stringObject.replace(regexp/substr,replacement);</code><br><strong> 返回值：</strong> 返回替换后的新字符串<br><strong> 注意：</strong> 字符串的stringObject的replace()方法执行的是查找和替换操作，替换的模式有2种，既可以是字符串，也可以是正则匹配模式，如果是正则匹配模式的话，那么它可以加修饰符g,代表全局替换，否则的话，它只替换第一个匹配的字符串；</li>
+</ol>
+<ul>
+<li>&ensp;&ensp;replacement 既可以是字符串，也可以是函数，如果它是字符串的话，那么匹配的将与字符串替换，replacement中的$有具体的含义，如下：</li>
+<li>&ensp;&ensp;$1,$2,$3….$99 含义是：与regexp中的第1到第99个子表达式相匹配的文本。可以看下面的例子</li>
+<li>&ensp;&ensp;$&amp; 的含义是：与RegExp相匹配的子字符串。</li>
+<li>&ensp;&ensp;lastMatch或RegExp[“$_”]的含义是：返回任何正则表达式搜索过程中的最后匹配的字符。</li>
+<li>&ensp;&ensp;lastParen或 RegExp[“$+”]的含义是：返回任何正则表达式查找过程中最后括号的子匹配。</li>
+<li>&ensp;&ensp;leftContext或RegExp[“$`”]的含义是：返回被查找的字符串从字符串开始的位置到最后匹配之前的位置之间的字符。</li>
+<li>&ensp;&ensp;rightContext或RegExp[“$’”]的含义是：返回被搜索的字符串中从最后一个匹配位置开始到字符串结尾之间的字符。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="comment">// 替换字符串</span></span><br><span class="line"><span class="keyword">var</span> s1 = str.replace(<span class="string">"hello"</span>,<span class="string">"a"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(s1);<span class="comment">// a world</span></span><br><span class="line"><span class="comment">// 使用正则替换字符串</span></span><br><span class="line"><span class="keyword">var</span> s2 = str.replace(<span class="regexp">/hello/</span>,<span class="string">"b"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(s2); <span class="comment">// b world</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用正则全局替换 字符串</span></span><br><span class="line"><span class="keyword">var</span> s3 = str.replace(<span class="regexp">/l/g</span>,<span class="string">''</span>);</span><br><span class="line"><span class="built_in">console</span>.log(s3); <span class="comment">// heo word</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $1,$2 代表的是第一个和第二个子表达式相匹配的文本</span></span><br><span class="line"><span class="comment">// 子表达式需要使用小括号括起来,代表的含义是分组</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">"longen,yunxi"</span>;</span><br><span class="line"><span class="keyword">var</span> s4 = name.replace(<span class="regexp">/(\w+)\s*,\s*(\w+)/</span>,<span class="string">"$2 $1"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(s4); <span class="comment">// "yunxi,longen"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'123-mm'</span>;</span><br><span class="line"><span class="keyword">var</span> strReg = str.replace(<span class="regexp">/(\d+)-([A-Za-z]+)/g</span>,<span class="string">'$2'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(strReg)<span class="comment">//mm  上面那段$2这个就是表示正则第二组个匹配到的内容,也就是说$1,$2.. 表示的是第几个括号匹配到的内容</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $&amp; 是与RegExp相匹配的子字符串</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">"hello I am a chinese people"</span>;</span><br><span class="line"><span class="keyword">var</span> regexp = <span class="regexp">/am/g</span>;</span><br><span class="line"><span class="keyword">if</span>(regexp.test(name)) &#123;</span><br><span class="line">  <span class="comment">//返回正则表达式匹配项的字符串</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">RegExp</span>[<span class="string">'$&amp;'</span>]);  <span class="comment">// am</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//返回被搜索的字符串中从最后一个匹配位置开始到字符串结尾之间的字符。</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">RegExp</span>[<span class="string">"$'"</span>]); <span class="comment">// a chinese people</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//返回被查找的字符串从字符串开始的位置到最后匹配之前的位置之间的字符。</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">RegExp</span>[<span class="string">'$`'</span>]);  <span class="comment">// hello I</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 返回任何正则表达式查找过程中最后括号的子匹配。</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">RegExp</span>[<span class="string">'$+'</span>]); <span class="comment">// 空字符串</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//返回任何正则表达式搜索过程中的最后匹配的字符。</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">RegExp</span>[<span class="string">'$_'</span>]);  <span class="comment">// hello I am a chinese people</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// replace 第二个参数也可以是一个function 函数</span></span><br><span class="line"><span class="keyword">var</span> name2 = <span class="string">"123sdasadsr44565dffghg987gff33234"</span>;</span><br><span class="line">name2.replace(<span class="regexp">/\d+/g</span>,<span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(v);</span><br><span class="line">   <span class="comment">// 第一次打印123</span></span><br><span class="line">   <span class="comment">// 第二次打印44565</span></span><br><span class="line">   <span class="comment">// 第三次打印987</span></span><br><span class="line">   <span class="comment">// 第四次打印 33234</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="RegExp对象方法"><a href="#RegExp对象方法" class="headerlink" title="RegExp对象方法"></a>RegExp对象方法</h4><ol>
+<li>test()方法<br><strong> 作用：</strong> 该方法用于检测一个字符串是否匹配某个模式；<br><strong> 基本语法：</strong> <code>RegExpObject.test(str);</code><br><strong> 返回：</strong> 返回true，否则返回false；<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"longen and yunxi"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="regexp">/longen/</span>.test(str)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="regexp">/longlong/</span>.test(str)); <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者创建RegExp对象模式</span></span><br><span class="line"><span class="keyword">var</span> regexp = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"longen"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(regexp.test(str)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><br></p>
+<ol>
+<li>exec()方法<br><strong> 作用：</strong> 该方法用于检索字符串中的正则表达式的匹配<br><strong> 基本语法：</strong> <code>RegExpObject.exec(string)</code><br><strong> 返回值：</strong> 返回一个数组，存放匹配的结果，如果未找到匹配，则返回值为null；<br><strong> 注意点：</strong> 该返回的数组的第一个元素是与正则表达式相匹配的文本<br>该方法还返回2个属性，index属性声明的是匹配文本的第一个字符的位置；input属性则存放的是被检索的字符串string；该方法如果不是全局的话，返回的数组与match()方法返回的数组是相同的。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"longen and yunxi"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="regexp">/longen/</span>.exec(str));</span><br><span class="line"><span class="comment">// 打印 ["longen", index: 0, input: "longen and yunxi"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 假如没有找到的话，则返回null</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="regexp">/wo/</span>.exec(str)); <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="正则表达式类型"><a href="#正则表达式类型" class="headerlink" title="正则表达式类型"></a>正则表达式类型</h2><h4 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h4><p>用于构建正则表达式的符号，常用的有</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>查找任意的单个字符，除换行符外</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>任意一个字母或数字或下划线，A_Za_Z0<em>9,</em>中任意一个</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>查找非单词的字符，等价于[^A_Za_z0<em>9</em></td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配一个数字字符，等价于[0-9]</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配一个非数字字符，等价于[^0-9]</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任何空白字符，包括空格，制表符，换行符等等。等价于[\f\n\r\t\v]</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配任何非空白字符，等价于[^\f\n\r\t\v]</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配一个单词边界，也就是指单词和空格间的位置，比如’er\b’可以匹配”never”中的”er”,但是不能匹配”verb”中的”er”</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配非单词边界,’er\B’能匹配’verb’中的’er’,但不能匹配’never’中的’er’</td>
+</tr>
+<tr>
+<td>\0</td>
+<td>匹配非单词边界,’er\查找NUL字符。</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>匹配一个换行符</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>匹配一个换页符</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>匹配一个回车符</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>匹配一个制表符</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>匹配一个垂直制表符</td>
+</tr>
+<tr>
+<td>\xxx</td>
+<td>查找一个以八进制数xxx规定的字符</td>
+</tr>
+<tr>
+<td>\xdd</td>
+<td>查找以16进制数dd规定的字符</td>
+</tr>
+<tr>
+<td>\uxxxx</td>
+<td>查找以16进制数的xxxx规定的Unicode字符。</td>
+</tr>
+</tbody>
+</table>
+<p>其实常用的几个可以简单记为下面的几个意思:<br>\s : 空格<br>\S : 非空格<br>\d : 数字<br>\D : 非数字<br>\w : 字符 ( 字母 ，数字，下划线_ )<br>\W : 非字符例子：是否有不是数字的字符</p>
+<h5 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h5><p>用于限定子模式出现在正则表达式的次数。</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>匹配一次或多次，相当于{1,}</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配零次或多次 ，相当于{0,}</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配零次或一次 ，相当于{0,1}</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>匹配n次</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>匹配至少n个，最多m个某某的字符串</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>匹配至少n个某字符串</td>
+</tr>
+</tbody>
+</table>
+<h4 id="位置符号"><a href="#位置符号" class="headerlink" title="位置符号"></a>位置符号</h4><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$</td>
+<td>结束符号，例子：n$，匹配以n结尾的字符串</td>
+</tr>
+<tr>
+<td>^</td>
+<td>起始符号,例如^n,匹配以n开头的字符串</td>
+</tr>
+<tr>
+<td>?=</td>
+<td>肯定正向环视,例：?=n,匹配其后紧接指定的n字符串</td>
+</tr>
+<tr>
+<td>?!</td>
+<td>否定正向环视,例如：?!n,匹配其后没有紧接指定的n字符串</td>
+</tr>
+<tr>
+<td>?:</td>
+<td>表示不匹配</td>
+</tr>
+</tbody>
+</table>
+<p><strong> 注意点： </strong><br>&ensp;&ensp;刚开始学习正则的时候，是比较容易混淆 <code>^</code> : 放在正则的最开始位置，就代表起始的意思,放在中括号里，表示排除的意思。也就是说，/[^a]/和/^[a]/是不一样的，前者是排除的意思，后者是代表首位<br>&ensp;&ensp;$:正则的最后位置,就代表结束的意思.</p>
+<h4 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h4><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>竖线</td>
+<td>选择(不是他就是她)</td>
+</tr>
+<tr>
+<td>(…)</td>
+<td>分组</td>
+</tr>
+</tbody>
+</table>
+<h4 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h4><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[0-9]</td>
+<td>匹配 0 到 9 间的字符</td>
+</tr>
+<tr>
+<td>[a-zA-Z]</td>
+<td>匹配任意字母</td>
+</tr>
+<tr>
+<td>[^0-9]</td>
+<td>不等于0到9的其它字符</td>
+</tr>
+</tbody>
+</table>
+<p>&ensp;&ensp;()分组符号可以理解为，数学运算中的括号，用于计算的分组使用。[]可以理解为，只要满足括号里面其中的某种条件即可。比如[abc],意思是满足abc中的某一个，这样比较好记。</p>
+<h2 id="贪婪模式和非贪婪模式"><a href="#贪婪模式和非贪婪模式" class="headerlink" title="贪婪模式和非贪婪模式"></a>贪婪模式和非贪婪模式</h2><p>&ensp;&ensp;其实可以简单的理解，贪婪模式就是尽可能多的匹配，非贪婪模式就是尽可能少的匹配.<br><strong> 贪婪模式量词：</strong> <code>{x,y} ,  {x,} ,  ? ,  * , 和  +</code><br><strong> 非贪婪模式量词：</strong> <code>{x,y}?，{x,}?，??，*?，和 +?</code>,所以非贪婪模式就是在贪婪模式后面加了一个问号</p>
+<p>我们用代码来理解一下贪婪模式和非贪婪模式的区别<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"&lt;p&gt;这是第一段文本&lt;/p&gt;text1&lt;p&gt;这是第二段文本&lt;/p&gt;text2&lt;p&gt;xxx&lt;/p&gt;text2again&lt;p&gt;end&lt;/p&gt;"</span>;</span><br><span class="line"><span class="comment">// 非贪婪模式1</span></span><br><span class="line"><span class="built_in">console</span>.log(str.match(<span class="regexp">/&lt;p&gt;.*?&lt;\/p&gt;text2/</span>)[<span class="number">0</span>]); <span class="comment">// &lt;p&gt;这是第一段文本&lt;/p&gt;text1&lt;p&gt;这是第二段文本&lt;/p&gt;text2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 贪婪模式</span></span><br><span class="line"><span class="built_in">console</span>.log(str.match(<span class="regexp">/&lt;p&gt;.*&lt;\/p&gt;text2/</span>)[<span class="number">0</span>]); <span class="comment">// &lt;p&gt;这是第一段文本&lt;/p&gt;text1&lt;p&gt;这是第二段文本&lt;/p&gt;text2&lt;p&gt;xxx&lt;/p&gt;text2</span></span><br></pre></td></tr></table></figure></p>
+<p>&ensp;&ensp;从上面的代码中，我们可以看到，非贪婪模式，当它匹配到它需要的第一个满足条件之后，他就会停止了。而贪婪模式则会继续向右边进行匹配下去。<br>注意点：?号在一些量词后面才是指非贪婪模式，如果直接在一些字符串的后面，表示的是匹配0次或1次。如下所示<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'abced'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.match(<span class="regexp">/ce?/g</span>)); <span class="comment">// ["ce"]</span></span><br><span class="line"><span class="built_in">console</span>.log(reg.match(<span class="regexp">/cf?/g</span>)); <span class="comment">// ["c"]</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="零宽正向断言和负向断言"><a href="#零宽正向断言和负向断言" class="headerlink" title="零宽正向断言和负向断言"></a>零宽正向断言和负向断言</h2><ul>
+<li><code>(?=)</code>零宽正向断言: 括号内表示某个位置右边必须和=右边匹配上</li>
+<li><code>(?!)</code>负向断言: 括号内表示某个位置右边不和!后的字符匹配。<br>概念很抽象，直接看代码：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern=<span class="regexp">/str(?=ings)ing/</span>;</span><br><span class="line"><span class="comment">// 表示匹配 r 后面必须有ings的 string字符</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"strings.a"</span>.match(pattern)); <span class="comment">//["string", index: 0, input: "strings.a"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 同理，匹配string后面必须有s的 string 字符串</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"strings.a"</span>.match(<span class="regexp">/string(?=s)/</span>)); <span class="comment">//["string", index: 0, input: "strings.a"]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"string_x"</span>.match(pattern)); <span class="comment">// null</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"string_x"</span>.match(<span class="regexp">/string(?=s)/</span>)); <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果理解了(?=),那么(?!)就很好理解了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern=<span class="regexp">/string(?!s)/</span>; <span class="comment">// 匹配string后面不带s的string字符串</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"strings"</span>.match(pattern)); <span class="comment">//null</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"string."</span>.match(pattern)); <span class="comment">//["string", index: 0, input: "string."]</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="正则表达式实战练习"><a href="#正则表达式实战练习" class="headerlink" title="正则表达式实战练习"></a>正则表达式实战练习</h2><p>&ensp;&ensp;上面讲的基本都是理论，下面我们来实战一番，以此来巩固我们正则表达式的学习，学习的过程以demo的形式，对我们的知识点进行巩固。<br>&ensp;&ensp;下面的实例是参考这篇文章，有兴趣可以看 <a href="http://blog.csdn.net/Mark_LQ/article/details/48999627?locationNum=2&amp;fps=1" target="_blank" rel="noopener">原文</a>,不过我整理了一下，个人觉得，把下面的例子都实践一遍，那么就基本掌握正则的使用了，满足平时的工作基本够了。</p>
+<p><strong> demo1: </strong><br>要求：匹配结尾的数字，例如：取出字符串最后一组数字，如：30CACDVB0040 取出40<br>分析：匹配数组字符为\d,匹配1次或多次为 +，以什么结尾为 $,全局匹配为 g<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'30CACDVB0040'</span>.match(<span class="regexp">/\d+$/g</span>)); <span class="comment">// ["0040"]</span></span><br></pre></td></tr></table></figure></p>
+<p>如果我们只想要最后结尾的最后两个数字，则可以使用量词 {n,m},所以结果为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'30CACDVB0040'</span>.match(<span class="regexp">/\d&#123;1,2&#125;$/g</span>)); <span class="comment">// ["40"]</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo2: </strong><br>要求:统一空格个数,例如：字符串内字符键有空格，但是空格的数量可能不一致，通过正则将空格的个数统一变为一个。<br>分析： 匹配空格的字符为 \s<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str =<span class="string">'学 习  正    则'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(<span class="regexp">/\s+/g</span>,<span class="string">' '</span>)); <span class="comment">// 学 习 正 则</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo3: </strong><br>要求：判断字符串是不是由数字组成<br>分析：我们可以这样匹配，以数字 \d 开头^,以数字结尾 $,匹配零次或多次 *<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str =<span class="string">'学 习  正    则'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="regexp">/^\d*$/g</span>.test(<span class="string">'123789'</span>));  <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="regexp">/^\d*$/g</span>.test(<span class="string">'12378b9'</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo4: </strong><br>要求：验证是否为手机号<br>分析：现在手机开头的范围比较多，第一位是【1】开头，第二位则则有【3,4,5,7,8】，第三位则是【0-9】并且匹配9个数字。<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^1[3|4|5|7|8][0-9]&#123;9&#125;$/</span>; <span class="comment">//验证规则</span></span><br><span class="line"><span class="built_in">console</span>.log(reg.test(<span class="number">15984591578</span>)); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(reg.test(<span class="number">11984591578</span>)); <span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo5: </strong><br>要求：删除字符串两端的空格<br>分析：跟demo2类似，匹配空格 ^\s开头，空格结尾 \s$<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">' 学习正则  '</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(<span class="regexp">/^\s+|\s+$/</span>,<span class="string">''</span>));  <span class="comment">// 学习正则</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo6: </strong><br>要求：只能输入数字和小数点<br>分析：开头需要匹配为数字，结尾也应为数字，然后再加个点,点必须转义，匹配0次或一次<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg =<span class="regexp">/^\d*\.?\d&#123;0,2&#125;$/</span>;</span><br><span class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">'125.1'</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(reg.test(<span class="string">'125a'</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo7: </strong><br>要求：只能输入小写的英文字母和小数点，和冒号，正反斜杠(：./)<br>分析：这几个要求组成一个分组，把他们放在一个分组里,点，正反斜杠，冒号需要转义<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/[a-z\.\/\\:]+/</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'79abncdc.ab123'</span>.match(reg)); <span class="comment">// ["abncdc.ab", index: 2, input: "79abncdc.ab123"]</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo8: </strong><br>要求：去掉所有的html标签<br>分析：html标签的形式为<ul></ul>,所以我们可以匹配&lt;开始，然后一些内容，再加上结束符 &gt;<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/&lt;[^&gt;]+&gt;/gi</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'&lt;ul&gt;&lt;li&gt;hello world&lt;/li&gt;&lt;/ul&gt;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(reg,<span class="string">''</span>)); <span class="comment">// hello world</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo9: </strong><br>要求：绝对路径变相对路径<br>分析： 比如: <code>&lt;img src=&quot;http://m.163.com/images/163.gif&quot; /&gt;</code> 替换成 <code>&lt;img src=&quot;/images/163.gif&quot; /&gt;</code>.<br>我们要替换http:// 和后面的域名，第一个 / 为止，<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/http:\/\/[^\/]+/g</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'http://m.163.com/images/163.gif'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(reg,<span class="string">''</span>)); <span class="comment">// /images/163.gif</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo10: </strong><br>要求：用于用户名注册，户名只能用中文、英文、数字、下划线、4-16个字符。<br>分析： 匹配中文的正则为 <code>/[\u4E00-\u9FA5\uf900-\ufa2d]/</code>,英文，数字的元字符为 \w,量词 {4,16}<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^/</span>[\u4E00-\u9FA5\uf900-\ufa2d\w]&#123;<span class="number">4</span>,<span class="number">16</span>&#125;$/;</span><br><span class="line"><span class="keyword">var</span> str1 = <span class="string">'hellow_1230'</span>;</span><br><span class="line"><span class="keyword">var</span> str2 = <span class="string">'hellow_1230*'</span>;</span><br><span class="line"><span class="keyword">var</span> str3 = <span class="string">'hellow_12304549764654657456465756'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(reg.test(str1)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(reg.test(str2)); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(reg.test(str3)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo11 : </strong><br>要求：匹配身份证号<br>分析：身份证为15为或者18位，最后一位为数字或者x<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(\d&#123;14&#125;|\d&#123;17&#125;)(\d|[xX])$/</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'44162119920547892X'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(reg.test(str));  <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo12: </strong><br>要求：验证邮箱<br>分析：邮箱的形式可能为 234564@qq.com; fasdfja@163.com，可以看到，前面为字母或者数字，然后加@,@后面可能是数字或者是其他，然后再加 . 再然后是一些com或者其他字符，我们用()来进行分组；<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^([\w_-])+@([\w_-])+([\.\w_-])+/</span>;</span><br><span class="line"><span class="keyword">var</span> str1 = <span class="string">'test@hotmail.com'</span>;</span><br><span class="line"><span class="keyword">var</span> str2 = <span class="string">'test@sima.vip.com'</span>;</span><br><span class="line"><span class="keyword">var</span> str3 = <span class="string">'te-st@qq.com.cn'</span>;  </span><br><span class="line"><span class="keyword">var</span> str4 = <span class="string">'te_st@sima.vip.com'</span>;</span><br><span class="line"><span class="keyword">var</span> str5 = <span class="string">'te.._st@sima.vip.com'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(reg.test(str1)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(reg.test(str2)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(reg.test(str3)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(reg.test(str4)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(reg.test(str5)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo13: </strong><br>要求：匹配源代码中的链接<br>分析：a标签中有href，也可能有class ,id等其他属性，而且不确定a标签后面是否有空格，所以要考虑的东西比较多。<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/&lt;a\s(\s*\w*?\s*=\s*".+?")*(\s*href\s*=\s*".+?")(\s*\w*?\s*=\s*".+?")*\s*&gt;[\s\S]*?&lt;\/a&gt;/g</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'&lt;p&gt;测试链接：&lt;a id = "test" href="http://bbs.blueidea.com" title="无敌"&gt;经典论坛&lt;/a&gt;&lt;/p&gt;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.match(reg));  <span class="comment">// ["&lt;a id = "test" href="http://bbs.blueidea.com" title="无敌"&gt;经典论坛&lt;/a&gt;"]</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo14: </strong><br>要求：匹配a标签里面的内容<br>分析：上面的demo中，我们匹配到了a标签，这里的话我们匹配a标签里面的内容，这里要学习一个符号<code>?:</code>表示不匹配，所以我们在前面的括号中加上<code>?:</code>去掉a标签的匹配，然后再a标签内容里加个括号，表示分组。<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg =<span class="regexp">/&lt;a\s(?:\s*\w*?\s*=\s*".+?")*(?:\s*href\s*=\s*".+?")(?:\s*\w*?\s*=\s*".+?")*\s*&gt;([\s\S]*?)&lt;\/a&gt;/</span>;;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'&lt;a id = "test" href="http://bbs.blueidea.com" title="无敌"&gt;经典论坛&lt;/a&gt;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(reg,<span class="string">'$1'</span>));  <span class="comment">// 经典论坛    $1 表示的是括号里面的分组，由于前面的括号都是不获取，所以获取的第一个括号的内容就是a标签里面的内容</span></span><br></pre></td></tr></table></figure></p>
+<p><strong> demo15： </strong><br>要求：获取url的指定参数的值<br>分析： url带参数类似为这样：<a href="http://www.baicu.com?type=1&amp;value=789" target="_blank" rel="noopener">http://www.baicu.com?type=1&amp;value=789</a>; 所以，要获取的参数要么是在?或者&amp;开头，到下一个&amp;或者直接后面什么都不跟为止。这里我们用new RegExp的形式，因为这样可以传参。<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取url中的value值</span></span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'http://www.baicu.com?type=1&amp;value=789'</span>;</span><br><span class="line"><span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"(^|&amp;|\\?)value=([^&amp;]*)(&amp;|$)"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(url.match(reg)); <span class="comment">//["&amp;value=789", "&amp;", "789", "", index: 27, input: "http://www.baicu.com?type=1&amp;value=789"]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>稍微改编一下，我们就可以弄一个获取指定参数值的函数了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUrlParam</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"(^|&amp;|\\?)"</span> + name + <span class="string">"=([^&amp;]*)(&amp;|$)"</span>);</span><br><span class="line">  <span class="keyword">var</span> r = <span class="built_in">window</span>.location.search.substr(<span class="number">1</span>).match(reg);</span><br><span class="line">  <span class="keyword">if</span> (r != <span class="literal">null</span>) <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(r[<span class="number">2</span>]);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong> demo16: </strong><br>要求：将数字 15476465转变为15,476,465<br>分析：我们可以这样，匹配一个数字，然后它的后面紧跟着三个数字，并且结尾也是要有三个数字，比如 12345689我们找到 1<code>2</code> 34<code>5</code> 689,符合条件的是数字2和5，因为它后面紧跟着三个数字，并且这样结尾也是三个数字。然后我们在2和5的后面加个<code>,</code>,就达到了我们的目的12,345,689;<br>知识补充：这里我们需要介绍正则的一个知识点，断言<code>?=</code>,它只匹配一个位置。假如匹配一个“人”字，但是你只想匹配中国人的人字，不想匹配法国人的人<code>(?=中国)人</code>;<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'15476465'</span>;</span><br><span class="line"><span class="keyword">var</span> reg =<span class="regexp">/(\d)(?=(\d&#123;3&#125;)+$)/g</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(reg,<span class="string">'$1,'</span>)); <span class="comment">//15,476,465</span></span><br></pre></td></tr></table></figure></p>
+<p>进一步讲解：/(\d)(?=(\d{3})+$)/匹配的是一个数字，即(\d),<br>它后面的字符串必须是三的倍数，这个表达就是(?=(\d{3})+$),且最后一次匹配以 3 个数字结尾<br>$1,表示在第一个分组表达式匹配的字符后面加,，这里其实只有一个(\d)，问号后面的可以看成它的定语。/(\d)(?=(\d{3})+$)/g<br>这个表达式通俗来说是：要找到所有的单个字符，这些字符的后面跟随的字符的个数必须是3的倍数，并在符合条件的单个字符后面添加,</p>
+<p><strong> demo17： </strong><br>要求：将阿拉伯数字替换为中文大写形式<br>分析：我们可以用replace来弄这个，replace中的function可以获取到匹配的每一个内容，比如返回匹配数字188，那么就会依次返回1,8,8<br>结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\d/g</span>;</span><br><span class="line"><span class="keyword">var</span> arr=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"零"</span>,<span class="string">"壹"</span>,<span class="string">"贰"</span>,<span class="string">"叁"</span>,<span class="string">"肆"</span>,<span class="string">"伍"</span>,<span class="string">"陆"</span>,<span class="string">"柒"</span>,<span class="string">"捌"</span>,<span class="string">"玖"</span>);</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'189454'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(reg,<span class="function"><span class="keyword">function</span>(<span class="params">m</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr[m];  <span class="comment">//壹捌玖肆伍肆</span></span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure></p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://xianyulaodi.github.io/2017/05/30/正则表达式学习/" data-id="cje8p1027001ejkp6menqemkt" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsklEQVR42u3aQY6kMAwF0Lr/pXukWbU0Ar7tuBtpHitEFZCXBY6+8/nEx9ff4/v51XF/779PuPrP/f8PH3h4eHitod8PNwfcn+e/HptiPDw8vDVe/rj7z33yoc/fUi0keHh4eG/j5UO8+nxXF8pJycHDw8N7Py8fUHLvfBLx8PDwfouXhBG9YnB/by9oWMla8PDw8GpdqnJk8Lvn6/09PDw8vFZXvfpx771xUmweRouHh4e3wLt/ZQLIF7t5gHtqJHh4eHgbvGoMMSkb98hJwbg8x8PDw1vgVRfHk2A3XzQnJSSJd/Hw8PA2eEnrqNrO7y2mqxMXPQEPDw9vgVcNI3oBQa/A5NP0sGkADw8P7ygvf32+pakazuZTVgXj4eHhbfPyFyf/LGQhxeihMLl4eHh4y7ze0JPPd95g6y3fC60vPDw8vEO8qAFfjHd7TaxemXkoDHh4eHhHeZOGUx40TLZk5YXn2MIaDw8P7/b5243/JMKYbBR4uI6Hh4e3wGs2luYBa9ziSpbdzU1XeHh4eC1e9ebeECfBRD5ll1sH8PDw8H6clze95rnIfGMBHh4e3s/w5nHDfEtBHgp/8gMPDw9vgZc3wPICMN9MMBn/ZYyLh4eHd4jXa/DvRRJnpxsPDw9vg1d99P2St7cgrkYhk3fh4eHhzXn3A80Xu9VIYh5V4OHh4b2Td6yFX4xo8xbXw3Tg4eHhLfAmUWkePfTKzKkOFx4eHt5ZXu+DmyzB80C2+rRCYIGHh4e3wDtVW/ItBZPm2Xzpj4eHh3eKlxeDeRMrn4L8+qc6W3h4eHiHeNUAIg9we9ebqQkeHh7ey3j5gKobCCZhx0NKjYeHh/cCXh4HJNcngGj68PDw8NZ4eaBwbKtTHEYkb7wsJ3h4eHgLvI0GWG8xfapsrPf38PDw/l/eH5VFNco5+BgzAAAAAElFTkSuQmCC" class="article-share-link">分享</a><div class="tags"><a href="/tags/正则/">正则</a></div><div class="post-nav"><a href="/2017/06/18/手写一个router/" class="pre">手写一个router</a><a href="/2017/05/25/老生常谈css实现左侧固定，右侧自适应/" class="next">老生常谈，css实现左侧固定右侧自适应</a></div><div id="container"></div><link rel="stylesheet" href="/css/default.css?v=0.0.0"><script src="/js/gitment.browser.js?v=0.0.0"></script><script>var gitment = new Gitment({
+  owner: 'xianyulaodi',
+  repo: 'myBlogCommentRepo',
+  oauth: {
+    client_id: 'bb8f1145bdd0717d9830',
+    client_secret: 'b18dc8d3b04cea043cb47d083049276cd93e0503',
+  },
+})
+gitment.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://xianyulaodi.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vue/">vue</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/高阶函数/" style="font-size: 15px;">高阶函数</a> <a href="/tags/BigPipe/" style="font-size: 15px;">BigPipe</a> <a href="/tags/博客园迁移/" style="font-size: 15px;">博客园迁移</a> <a href="/tags/cookie/" style="font-size: 15px;">cookie</a> <a href="/tags/expess/" style="font-size: 15px;">expess</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/path/" style="font-size: 15px;">path</a> <a href="/tags/mongoose/" style="font-size: 15px;">mongoose</a> <a href="/tags/fs/" style="font-size: 15px;">fs</a> <a href="/tags/setTimeout/" style="font-size: 15px;">setTimeout</a> <a href="/tags/Eventloop/" style="font-size: 15px;">Eventloop</a> <a href="/tags/npm/" style="font-size: 15px;">npm</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/vuex/" style="font-size: 15px;">vuex</a> <a href="/tags/vue-router/" style="font-size: 15px;">vue-router</a> <a href="/tags/router/" style="font-size: 15px;">router</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/正则/" style="font-size: 15px;">正则</a> <a href="/tags/爬虫/" style="font-size: 15px;">爬虫</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/02/25/如何写一个npm包/">如何写一个npm包</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/10/BigPipe小探/">BigPipe小探</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/22/将中文转为拼音首字母/">js提取中文拼音首字母</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/29/给女朋友写的一个简书爬虫/">给女朋友写的一个简书爬虫</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/nodejs学习小结/">nodejs学习小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/12/express图片上传/">express图片上传</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/浅析css中的cursor/">浅析css中的cursor</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/03/javascript高阶函数/">javascript高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/手写一个router/">手写一个router</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/30/正则表达式学习/">正则表达式学习</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-money"> 请博主喝咖啡</i><img src="/img/WeChatQR.png"/></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.cnblogs.com/xianyulaodi/" title="我的博客园" target="_blank">我的博客园</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">咸鱼老弟.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

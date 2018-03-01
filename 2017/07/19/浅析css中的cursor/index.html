@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>浅析css中的cursor | 咸鱼老弟</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/7.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">浅析css中的cursor</h1><a id="logo" href="/.">咸鱼老弟</a><p class="description">【博客园-咸鱼老弟】</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/resource/"><i class="fa fa-university"> 资源</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">浅析css中的cursor</h1><div class="post-meta">Jul 19, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="clear"><div id="toc" class="toc-article"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cursor-zoom-in-和-cursor-zoom-out"><span class="toc-number">1.</span> <span class="toc-text">cursor: zoom-in 和 cursor: zoom-out</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cursor的其他属性"><span class="toc-number">2.</span> <span class="toc-text">cursor的其他属性</span></a></li></ol></div></div><div class="post-content"><p>&ensp;&ensp;&ensp;&ensp;平时我们在css中cursor最多的就是<code>cursor:pointor</code>,今天在掘金点击一张图片放大缩小的时候，看了一下源码，发觉cursor中有一个zoom-in和zoom-out的值，可以实现一个放大缩小的鼠标手，觉得挺好玩，所以顺便也总结一下cursor中的一些属性。</p>
+<a id="more"></a>
+<h2 id="cursor-zoom-in-和-cursor-zoom-out"><a href="#cursor-zoom-in-和-cursor-zoom-out" class="headerlink" title="cursor: zoom-in 和 cursor: zoom-out"></a>cursor: zoom-in 和 cursor: zoom-out</h2><p>正如我是在点击图片的时候看到这个属性的，zoom-in/zoom-out是实现放大缩小的效果</p>
+<p>效果图如下：<br><img src="http://image.zhangxinxu.com/image/blog/201412/2014-12-22_162640.png" alt=""><img src="http://image.zhangxinxu.com/image/blog/201412/2014-12-22_162706.png" alt=""></p>
+<p>代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.zoom-in</span> &#123;</span><br><span class="line">    <span class="attribute">cursor</span>: zoom-in;    <span class="comment">/* 放大，也就是 + 号 */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.zoom-out</span> &#123;</span><br><span class="line">   <span class="attribute">cursor</span>: zoom-out; <span class="comment">/* 缩小，也就是 -  号 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以点击查看 <a href="/demo/cursor-zoom.html" target="_blank">demo</a></p>
+<p>兼容性方面：<br><img src="/img/zoom-in.png" alt=""><br>&ensp;&ensp;从图中我们可以看到，除了IE，其他浏览器的兼容性都特别好，也就是说，除了IE11及以下，其他浏览器都支持 zoom-in/zoom-out<br>(唉，IE何时灭亡)</p>
+<h2 id="cursor的其他属性"><a href="#cursor的其他属性" class="headerlink" title="cursor的其他属性"></a>cursor的其他属性</h2><p>&ensp;&ensp;正如标题所说，本文是对cursor的浅析，其实我只是想总结一些zoom-in/zoom-out而已，关于cursor的其他属性，可以看下面的表格</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>需使用的自定义光标的 URL。<br>（注释：请在此列表的末端始终定义一种普通的光标，以防没有由 URL 定义的可用光标。)</td>
+</tr>
+<tr>
+<td>default</td>
+<td>默认光标（通常是一个箭头）</td>
+</tr>
+<tr>
+<td>auto</td>
+<td>默认。浏览器设置的光标。</td>
+</tr>
+<tr>
+<td>crosshair</td>
+<td>光标呈现为十字线。</td>
+</tr>
+<tr>
+<td>pointer</td>
+<td>光标呈现为指示链接的指针（一只手）</td>
+</tr>
+<tr>
+<td>move</td>
+<td>此光标指示某对象可被移动。</td>
+</tr>
+<tr>
+<td>e-resize</td>
+<td>此光标指示矩形框的边缘可被向右（东）移动。</td>
+</tr>
+<tr>
+<td>ne-resize</td>
+<td>此光标指示矩形框的边缘可被向上及向右移动（北/东）。</td>
+</tr>
+<tr>
+<td>nw-resize</td>
+<td>此光标指示矩形框的边缘可被向上及向左移动（北/西）。</td>
+</tr>
+<tr>
+<td>n-resize</td>
+<td>此光标指示矩形框的边缘可被向上（北）移动。</td>
+</tr>
+<tr>
+<td>se-resize</td>
+<td>此光标指示矩形框的边缘可被向下及向右移动（南/东）。</td>
+</tr>
+<tr>
+<td>sw-resize</td>
+<td>此光标指示矩形框的边缘可被向下及向左移动（南/西）。</td>
+</tr>
+<tr>
+<td>s-resize</td>
+<td>此光标指示矩形框的边缘可被向下移动（南）。</td>
+</tr>
+<tr>
+<td>w-resize</td>
+<td>此光标指示矩形框的边缘可被向左移动（西）。</td>
+</tr>
+<tr>
+<td>text</td>
+<td>此光标指示文本。</td>
+</tr>
+<tr>
+<td>wait</td>
+<td>此光标指示程序正忙（通常是一只表或沙漏）。</td>
+</tr>
+<tr>
+<td>help</td>
+<td>此光标指示可用的帮助（通常是一个问号或一个气球）。</td>
+</tr>
+<tr>
+<td>grab</td>
+<td>抓手，抓，除了IE11及以，都支持，要加浏览器前缀</td>
+</tr>
+<tr>
+<td>grabbing</td>
+<td>抓手，抓住 ，除了IE11及以，都支持，要加浏览器前缀</td>
+</tr>
+</tbody>
+</table>
+<p>具体的效果可以点击查看 <a href="/demo/cursor-other.html" target="_blank">demo</a></p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://xianyulaodi.github.io/2017/07/19/浅析css中的cursor/" data-id="cje8p1027001cjkp658172bex" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACl0lEQVR42u3aQW7DMAwEwPz/0+m5aBMvSTF1gfHJB1vWKIDEkHw84usZXD+ff39fff7VuwcuPDw8vKNTf//MqynmgN74+ULj4eHh7fGqE6q+O8GP5oOHh4d3A14e5lZJ72eCh4eH9395yYerAXQSWOPh4eHdjZcPPZlKPt1kyQ7nWvDw8PBiXl5Fus/9Sn0PDw8P71BDQF7uqgbKyfOj2eLh4eEt8PIN9zm+ept79V08PDy8bV4vxVBtI6geG/nxc5E4xsPDw/sgL28FqJavqs1Y+dKXp4uHh4fX4uVtAfP0az7a/NjAw8PD2+PlyYJJsjVvCKju7Rfj4OHh4S3wckYvUu01H/SC8ijUxsPDwxvz8jJV72PVNG41gXuxfHh4eHgLvElpqpcO7gXivTHx8PDwNngbxao88K3Cyo1ceHh4eH/Eq4a2eWojT0n0gm88PDy8bd6kxapavjqVyCiXu/Dw8PDGvFPNUr3E6yR8zw8JPDw8vG3eRnI237HzTT//GfDw8PA2eL2B8iMhD6B7LVa9BcLDw8Pr8apHQi9ZMEnR9hoIvqVx8fDw8I7y8iL9BNbb4quheXTi4eHh4Y15+d/4nJoHzb0SXQGPh4eHt8Cbp1bzz+dXHi7nzQd4eHh4Z3n59t0Lmk+lgPNyWvkXwMPDw2vxEmp+3yvtVxclCtzx8PDw1njJh+dtT3liotnpgIeHh7fM66UJ5jmP/N185F/GxMPDw1vg9QpRvYEm7QWTgB4PDw9vg5cfBvnmPm8U6B0MeHh4eJ/k9RIH8/aCvDBWLn3h4eHh3ZJXPRh6T/bSynh4eHh35vWWoHo89EJ/PDw8vD3eqURAlCAoJiOqbDw8PLxtXvUP/7xsP5nQpAiHh4eHN+Z9ARd4VLkVu9I9AAAAAElFTkSuQmCC" class="article-share-link">分享</a><div class="tags"><a href="/tags/css/">css</a></div><div class="post-nav"><a href="/2017/08/12/express图片上传/" class="pre">express图片上传</a><a href="/2017/07/03/javascript高阶函数/" class="next">javascript高阶函数</a></div><div id="container"></div><link rel="stylesheet" href="/css/default.css?v=0.0.0"><script src="/js/gitment.browser.js?v=0.0.0"></script><script>var gitment = new Gitment({
+  owner: 'xianyulaodi',
+  repo: 'myBlogCommentRepo',
+  oauth: {
+    client_id: 'bb8f1145bdd0717d9830',
+    client_secret: 'b18dc8d3b04cea043cb47d083049276cd93e0503',
+  },
+})
+gitment.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://xianyulaodi.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/node/">node</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/vue/">vue</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/高阶函数/" style="font-size: 15px;">高阶函数</a> <a href="/tags/BigPipe/" style="font-size: 15px;">BigPipe</a> <a href="/tags/博客园迁移/" style="font-size: 15px;">博客园迁移</a> <a href="/tags/cookie/" style="font-size: 15px;">cookie</a> <a href="/tags/expess/" style="font-size: 15px;">expess</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/path/" style="font-size: 15px;">path</a> <a href="/tags/mongoose/" style="font-size: 15px;">mongoose</a> <a href="/tags/fs/" style="font-size: 15px;">fs</a> <a href="/tags/setTimeout/" style="font-size: 15px;">setTimeout</a> <a href="/tags/Eventloop/" style="font-size: 15px;">Eventloop</a> <a href="/tags/npm/" style="font-size: 15px;">npm</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/vuex/" style="font-size: 15px;">vuex</a> <a href="/tags/vue-router/" style="font-size: 15px;">vue-router</a> <a href="/tags/router/" style="font-size: 15px;">router</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/正则/" style="font-size: 15px;">正则</a> <a href="/tags/爬虫/" style="font-size: 15px;">爬虫</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/02/25/如何写一个npm包/">如何写一个npm包</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/10/BigPipe小探/">BigPipe小探</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/22/将中文转为拼音首字母/">js提取中文拼音首字母</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/29/给女朋友写的一个简书爬虫/">给女朋友写的一个简书爬虫</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/nodejs学习小结/">nodejs学习小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/12/express图片上传/">express图片上传</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/浅析css中的cursor/">浅析css中的cursor</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/03/javascript高阶函数/">javascript高阶函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/18/手写一个router/">手写一个router</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/30/正则表达式学习/">正则表达式学习</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-money"> 请博主喝咖啡</i><img src="/img/WeChatQR.png"/></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.cnblogs.com/xianyulaodi/" title="我的博客园" target="_blank">我的博客园</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">咸鱼老弟.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
