@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xianyulaodi.github.io/"/>
-  <updated>2018-03-01T15:50:25.500Z</updated>
+  <updated>2018-03-20T16:33:39.940Z</updated>
   <id>https://xianyulaodi.github.io/</id>
   
   <author>
@@ -15,6 +15,22 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一次code review引发的思考</title>
+    <link href="https://xianyulaodi.github.io/2018/03/20/%E4%B8%80%E6%AC%A1code%20review%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/"/>
+    <id>https://xianyulaodi.github.io/2018/03/20/一次code review引发的思考/</id>
+    <published>2018-03-20T15:04:00.000Z</published>
+    <updated>2018-03-20T16:33:39.940Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;今晚进行了前端小组的code review,对比起另外两位大神，发觉自己写的代码耦合比较高，不太好维护，而且时间久了，连自己都不太认识自己的代码。总结一下更好的代码方式，提升自己，向两位大神靠齐，求带飞&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>如何写一个npm包</title>
@@ -407,30 +423,6 @@
       <category term="博客园迁移" scheme="https://xianyulaodi.github.io/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD%E8%BF%81%E7%A7%BB/"/>
     
       <category term="cookie" scheme="https://xianyulaodi.github.io/tags/cookie/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>以setTimeout来聊聊Event Loop</title>
-    <link href="https://xianyulaodi.github.io/2017/02/26/%E4%BB%A5setTimeout%E6%9D%A5%E8%81%8A%E8%81%8AEvent%20Loop/"/>
-    <id>https://xianyulaodi.github.io/2017/02/26/以setTimeout来聊聊Event Loop/</id>
-    <published>2017-02-26T05:35:00.000Z</published>
-    <updated>2018-01-24T15:52:15.076Z</updated>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;平时的工作中，也许你会经常用到setTimeout这个方法，可是你真的了解setTimeout吗？本文想通过总结setTimeout的用法，顺便来探索javascript里面的事件执行机制。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="博客园迁移" scheme="https://xianyulaodi.github.io/tags/%E5%8D%9A%E5%AE%A2%E5%9B%AD%E8%BF%81%E7%A7%BB/"/>
-    
-      <category term="setTimeout" scheme="https://xianyulaodi.github.io/tags/setTimeout/"/>
-    
-      <category term="Eventloop" scheme="https://xianyulaodi.github.io/tags/Eventloop/"/>
     
   </entry>
   
